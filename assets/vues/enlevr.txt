@@ -1,0 +1,7 @@
+ligne 10
+<?php
+if (count($invite) > 0)
+{
+    echo(count($invite))
+?>
+vlister 
