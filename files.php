@@ -9,7 +9,7 @@ if(connecter() )
 
 if(count($_FILES)==1)
 {
-   $maxsize = 10000000;
+   $maxsize = 1000000;
    $filesize=$_FILES['file']['size'];
    $ext = array('.pdf','.PDF');
    $filext = ".".strtolower(substr(strrchr($_FILES['file']['name'], '.'), 1));
@@ -21,7 +21,7 @@ if(count($_FILES)==1)
   Le fichier est trop volumineux. Taille max: <?php echo $maxsize;?>. Taille du Fichier: <?php echo $filesize;?>.
 </div>
 <?php
-die;
+
    }
    elseif(!in_array($filext,$ext))
    {
@@ -44,7 +44,7 @@ Veuillez importer que des fichiers PDF !
       $filename1= "Files/".$nameid.$filext;
       $resultat = move_uploaded_file($tmp,$filename1);
       ajoutfile($date,$filename,$filename1,$id);
-    //   header('Location:liste.php');
+      header('Location:liste.php');
 
    
       
@@ -71,7 +71,7 @@ else
     
     ?>
     <div class="alert alert-danger" role="alert">
-  ERREUR 404!
+ Vous devez vous connecter pour acceder a cette ressource!!
 </div>
 <?php
 }

@@ -13,8 +13,10 @@ function connexionBdd(){
     
    }
 
-function user_co() 
-{
+
+
+
+function user_co(){ //si un utilistauer de categorie 'user' est connecter 
     $connecte = false;
     if (isset($_SESSION["loginUser"]))
     {
@@ -26,7 +28,8 @@ function user_co()
     
     return $connecte;
 }
-function connecter()
+function connecter() //si n'importe qui est connecter
+
 {
   $connect = False;
   if(isset($_SESSION['loginUser']))
@@ -37,7 +40,7 @@ function connecter()
 
 }
 
-function deletefile($id)
+function deletefile($id) //suprime le fichier de la bdd
 {
   $connect = connexionBdd();
   $requete = "delete from Files_Uploads where id = $id ;";
@@ -48,7 +51,7 @@ function deletefile($id)
 
 
 
-function ajoutfile($date,$name,$unique,$id)
+function ajoutfile($date,$name,$unique,$id)//ajoute le fichier a la bdd
 {
     $connect = connexionBdd();
     $requete='INSERT INTO Files_Uploads (`nom`,`unique_name`,`date`,`id_users`) VALUES ("'.$name.'","'.$unique.'","'.$date.'",'.$id.');';
@@ -56,7 +59,7 @@ function ajoutfile($date,$name,$unique,$id)
   
     
 }
-function listefile()
+function listefile()//liste tout les fichier reserver pour l'admin
 {
 $connect=connexionBdd();  
   if (TRUE) 
@@ -95,7 +98,7 @@ $connect=connexionBdd();
     }
    
 }
-function listefile_user($id)
+function listefile_user($id)//liste les fichier du users Connecter
 {
 $connect=connexionBdd();  
   if (TRUE) 
@@ -169,13 +172,13 @@ $connect=connexionBdd();
     }
    
 }
-function identifier($nom, $mdp)
+function identifier($nom, $mdp)//permet de connecter un utilisteurs
 {
   $connexion = connexionBdd();
     $requete="select * from users where nom ='".$nom."' and mdp ='".$mdp."' ;";
     $jeuResultat=$connexion->query($requete); 
     $i = 0;
-    echo $requete;
+    // echo $requete;
     $ligne = $jeuResultat->fetch();
     if ($ligne)
     {
@@ -189,7 +192,7 @@ function identifier($nom, $mdp)
   return $ligne;
 }
 
-function getusers($nom,$mdp)
+function getusers($nom,$mdp)//recupere tout les informations d'un users tel que son id et sa categorie
 {
     $connect = connexionBdd();
     $requete = "select * from users where nom = '".$nom."' and mdp = '".$mdp."';";
@@ -220,14 +223,50 @@ function getusers($nom,$mdp)
 
 
 
-function deconnecterVisiteur() 
+function deconnecterVisiteur() //deconnecte l'utilisteur
 {
     unset($_SESSION["idUser"]);
     unset($_SESSION["loginUser"]);
     unset($_SESSION["catUser"]);
     
 }
-function estAdministrateurConnecte() 
+function verif_login($login)
+{
+  $connect = connexionBdd();
+  $requete="select * from users where nom = '".$login."';";
+  $jeuResultat=$connect->query($requete); 
+    $i = 0;
+    // echo $requete;
+    $ligne = $jeuResultat->fetch();
+    if($ligne)
+    {
+      $a = 1;
+    }
+    else
+    {
+      $a = 0;
+    }
+
+    return $a;
+}
+function signin($login,$mail,$mdp)
+{
+     $connect = connexionBdd();
+     if(verif_login($login)==1)
+     {
+       $a = 0;
+     }
+     else
+     {
+       $requete = "insert into users (`nom`,`mail`,`mdp`,`cat`) VALUES ('".$login."','".$mail."','".$mdp."','user');";
+       $ok=$connect->query($requete);
+      //  echo $requete;
+       $a=1;
+
+     }
+     return $a;
+}
+function estAdministrateurConnecte() //si un utilistauer de categroie 'admin' est connecter 
 {
     $connecte = false;
     if (isset($_SESSION["loginUser"]))
@@ -239,7 +278,7 @@ function estAdministrateurConnecte()
     }    
     return $connecte;
 }
-function editsession($id, $login, $cat) {
+function editsession($id, $login, $cat) {//initialise la session quand la connexion a reussi
     $_SESSION["idUser"] = $id;
     $_SESSION["loginUser"] = $login;
     $_SESSION["catUser"] = $cat;

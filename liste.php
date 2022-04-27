@@ -48,7 +48,7 @@ else
    
     ?>
     <div class="alert alert-danger" role="alert">
-  ERREUR 404!
+    Vous devez vous connecter pour acceder a cette ressource!!
 </div>
 <?php
     
