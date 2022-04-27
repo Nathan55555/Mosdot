@@ -1,33 +1,43 @@
 <?php
 include('fonction.php');
-if(count($_FILES)==1)
+if(count($_POST)==0)
 {
-   $maxsize = 7000;
-   $filesize=$_FILES['file']['size'];
-   if($filesize>$maxsize)
-   {
-       echo "La taille maximal pour importer un fichier est de 7000 Octets";
-   }
-   else
-   {
-      $filename = $_FILES['file']['name'];
-      $date=date("d/m/Y");
-      echo $_SESSION["loginUser"];
-    //   $tmp=$_FILES['file']['tmp_name'];
-    //   $nameid = md5(uniqid(rand(), true));
-    //   $filename1= "Files/".$nameid.".sql";
-    //   $resultat = move_uploaded_file($tmp,$filename1);
-    //   ajoutfile($date,$filename,$filename1);
-    //   header('Location:liste.php');
-
-   
-      
-   }
-    
+  include('nav-main.php');
+  include('vlogin.php');
+  
 }
 else
 {
-    echo "";
+  $nom = $_POST['nom'];
+  $mdp = $_POST['mdp'];
+  if($nom =="" OR $mdp =="")
+  {
+    include('nav-main.php');
+    include('vlogin.php');
+  }
+  else
+  {
+    $log = identifier($nom,$mdp);
+    if (is_array($log)) 
+      { 
+        $user = getusers($nom,$mdp);
+        session_start();
+        editsession($user[0]['ID'],$user[0]['Nom'],$user[0]['Categorie']);
+       
+        header('Location:files.php');
+        
+  
+      }
+      else
+      {
+        header('Location:index.php');
+      }
+    
+      
+  }
 }
-include('vue.php');
+
+
+
+
 ?>

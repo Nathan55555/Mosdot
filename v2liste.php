@@ -1,6 +1,9 @@
 
 <div id="rechercher1">
   <h2>Liste des Fichiers</h2> 
+  <?php
+
+  ?>
 
 <table class="table">
   <thead>
@@ -8,6 +11,7 @@
       <th scope="col">ID</th>
       <th scope="col">Nom</th>
       <th scope="col">Date</th>
+      <th scope="col">Edit</th>
       
     </tr>
   </thead>
@@ -23,6 +27,9 @@
       <th scope="row"><?php echo $view[$i]['ID']?></th>
       <td><a href="<?php echo $view[$i]['Path']?>"><?php echo $view[$i]['Nom']?></a></td>
       <td><?php echo $view[$i]['Date']?></td>
+      <td><a href="delete_file.php?id=<?php echo $view[$i]['ID']; $_SESSION['path'] = $view[$i]['Path'];?>"><button type="button" class="close" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button></a></td>
       
     </tr>
     <?php

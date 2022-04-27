@@ -22,6 +22,12 @@
         {?>
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="files.php">Add File</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="liste.php">Mes Fichiers</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="deco.php">deco</a>
         </li>
         <?php
@@ -31,7 +37,7 @@
             ?>
             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="login.php">login</a>
+              <a class="nav-link active" aria-current="page" href="index.php">login</a>
             </li>
             <?php
         }

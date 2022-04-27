@@ -1,7 +1,7 @@
 <?php
 
    function connexionBdd(){
-    $PARAM_hote='172.18.0.4'; // le chemin vers le serveur
+    $PARAM_hote='172.18.0.3'; // le chemin vers le serveur
     $PARAM_port='3306';
     $PARAM_nom_bd='Files'; // le nom de votre base de donnee
     $PARAM_utilisateur='root'; // nom d'utilisateur pour se connecter
@@ -11,9 +11,6 @@
 
     
    }
-   if(connexionBdd())
-   {
-       echo "ok";
-   }
+ 
  
 ?> 

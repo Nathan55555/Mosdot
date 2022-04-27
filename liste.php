@@ -7,14 +7,51 @@ if(estAdministrateurConnecte() )
 {
     $view = listefile();
     include('nav-main.php');
-    include('v2liste.php');
+    if($view==0)
+    {
+       ?>
+       <div class="alert alert-secondary" role="alert">
+ Vous n'avez aucain Fichiers!
+</div>
+<?php
+    }
+    else
+    {
+        include('v2liste.php');
+
+    }
+}
+elseif(user_co())
+{
+    $id = $_SESSION['idUser'];
+    $view = listefile_user($id);
+    include('nav-main.php');
+    if($view==0)
+    {
+       ?>
+       <div class="alert alert-secondary" role="alert">
+ Vous n'avez aucain Fichiers!
+</div>
+<?php
+    }
+    else
+    {
+        include('v2liste.php');
+
+    }
+    
+    
 }
 else
 {
     include('nav-main.php');
-    echo $_SESSION["loginUser"];
-    echo "NON AUTHORISER";
-    echo $_SESSION["catUser"];
+   
+    ?>
+    <div class="alert alert-danger" role="alert">
+  ERREUR 404!
+</div>
+<?php
+    
 }
 
 ?>

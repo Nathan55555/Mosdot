@@ -1,5 +1,8 @@
 <?php
+
 include('fonction.php');
+session_start();
 deconnecterVisiteur() ;
-header('Location:index.php');
+session_destroy();
+header('location:index.php');
 ?>

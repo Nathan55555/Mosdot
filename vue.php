@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <?php include('nav-main.php');?>
+    
     <div class="container">
 
    
