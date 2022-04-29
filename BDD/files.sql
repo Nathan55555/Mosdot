@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 29 avr. 2022 à 17:16
+-- Généré le : ven. 29 avr. 2022 à 18:04
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 7.4.26
 
@@ -59,6 +59,15 @@ CREATE TABLE `pages_id` (
   `id` int(11) NOT NULL,
   `nom_page` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `pages_id`
+--
+
+INSERT INTO `pages_id` (`id`, `nom_page`) VALUES
+(1, 'files.php'),
+(2, 'liste.php'),
+(3, 'compte.php');
 
 -- --------------------------------------------------------
 
@@ -175,7 +184,7 @@ ALTER TABLE `log_users`
 -- AUTO_INCREMENT pour la table `pages_id`
 --
 ALTER TABLE `pages_id`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `statistique`
